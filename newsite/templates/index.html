@@ -1,0 +1,24 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<div class="hero" style="background-image: url('static/images/image1.jpg');"></div>
+<div class="container" style="margin-top: 40px;">
+    <div class="row">
+        {% for blogs in blog %}
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="{{ blogs.blog_pic.cdn_url }}-/crop/600x600/center/-/quality/lightest/" class="card-img-top" alt="{{ blogs.name}}">
+                <div class="card-body">
+                  <h5 class="card-title">{{ blogs.name}}</h5>
+                  <p class="card-text">{{ blogs.description }}</p>
+                  <a href="{% url 'editblog' blogs.id %}" class="btn btn-warning" style="width:80px">EDIT</a>
+                  <!-- <a href="{% url 'deleteblog' blogs.id %}" class="btn btn-danger">DELETE</a> -->
+                  <a href="{% url 'deleteblog' blogs.id %}" class="btn btn-danger">DELETE</a>
+                </div>
+              </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
